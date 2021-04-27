@@ -38,6 +38,10 @@ abstract class Env {
 
         $env = require_once $file;
 
+        if( !is_array($env) ){
+            return;
+        }
+
         foreach( $env as $key => $value ):
             self::set($key, $value);
         endforeach;
