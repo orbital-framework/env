@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Orbital\Env;
 
@@ -10,7 +11,7 @@ abstract class Env {
      * @param mixed $value
      * @return void
      */
-    public static function set($key, $value){
+    public static function set(string $key, mixed $value): void {
         putenv("$key=$value");
         $_ENV[ $key ] = $value;
     }
@@ -21,7 +22,7 @@ abstract class Env {
      * @param mixed $default
      * @return mixed
      */
-    public static function get($key, $default = NULL){
+    public static function get(string $key, mixed $default = null): mixed {
         return isset($_ENV[$key]) ? $_ENV[$key] : $default;
     }
 
@@ -30,7 +31,7 @@ abstract class Env {
      * @param string $file
      * @return void
      */
-    public static function load($file){
+    public static function load(string $file): void {
 
         if( !file_exists($file) ){
             return;
